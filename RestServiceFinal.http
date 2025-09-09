@@ -1,0 +1,22 @@
+@RestServiceFinal_HostAddress = https://localhost:7213
+
+GET {{RestServiceFinal_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{RestServiceFinal_HostAddress}}/api/users
+
+###
+
+POST {{RestServiceFinal_HostAddress}}/api/users
+Content-Type: application/json
+
+{
+    "name": "",
+    "lname": "",
+    "email": "",
+    "gender": 1
+}
+
+###
