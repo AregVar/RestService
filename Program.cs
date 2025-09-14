@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RestServiceFinal.Models;
-
+using Microsoft.Data.Sqlite;
 
 namespace RestServiceFinal
 {
@@ -11,6 +11,7 @@ namespace RestServiceFinal
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -19,7 +20,14 @@ namespace RestServiceFinal
                opt.UseInMemoryDatabase("UserList"));
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<IServiceScopeFactory>();
+                var InfoPuller = new InfoPull.InfoPuller(dbContext);
+                InfoPuller.Start();
+            }
+
+                // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
