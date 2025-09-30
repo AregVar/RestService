@@ -1,6 +1,7 @@
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using RestServiceFinal.Models;
-using Microsoft.Data.Sqlite;
+using System;
 
 namespace RestServiceFinal
 {
@@ -11,7 +12,8 @@ namespace RestServiceFinal
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            
+            builder.WebHost.UseUrls("http://localhost:7213");
+
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -40,7 +42,7 @@ namespace RestServiceFinal
 
             app.MapControllers();
 
-            app.Run();
+            app.Run("http://localhost:7213");
         }
     }
 }
