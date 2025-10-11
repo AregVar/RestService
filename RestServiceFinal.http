@@ -1,4 +1,4 @@
-@RestServiceFinal_HostAddress = https://localhost:7213
+@RestServiceFinal_HostAddress = http://localhost:7213
 
 GET {{RestServiceFinal_HostAddress}}/weatherforecast/
 Accept: application/json
