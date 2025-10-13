@@ -35,7 +35,7 @@ namespace RestServiceFinal
                 app.MapOpenApi();
             }
 
-            app.UseHttpsRedirection();
+            
 
             app.UseAuthorization();
 
