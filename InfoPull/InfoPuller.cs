@@ -45,9 +45,9 @@ namespace RestServiceFinal.InfoPull
                     connection.Open();
                     var command = connection.CreateCommand();
                     command.CommandText = @"CREATE TABLE IF NOT EXISTS InfoTable (Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Lname TEXT NOT NULL," +
-                        "Email TEXT NOT NULL, Gender TEXT, Birth TEXT);";// format of Birth YYYY-MM-DD
+                        "Email TEXT NOT NULL, Gender TEXT, Birth TEXT, Company TEXT);";// format of Birth YYYY-MM-DD
                     command.ExecuteNonQuery();
-                    command.CommandText = "SELECT Id, Name, Lname, Email, Gender, Birth FROM InfoTable";
+                    command.CommandText = "SELECT Id, Name, Lname, Email, Gender, Birth, Company FROM InfoTable";
                     using (var reader = command.ExecuteReader())
                     {
                         db.Users.RemoveRange(db.Users);
@@ -61,7 +61,8 @@ namespace RestServiceFinal.InfoPull
                                 var lname = reader.GetString(2);
                                 var email = reader.GetString(3);
                                 var gender = reader.GetString(4);
-                                
+                                var company = reader.GetString(6);
+
                                 var user = new User
                                 {
                                     Id = _nextId++,
@@ -69,6 +70,7 @@ namespace RestServiceFinal.InfoPull
                                     Lname = lname,
                                     Email = email,
                                     Gender = gender,
+                                    Company = company
                                 };
                                 db.Users.Add(user);
                             }
