@@ -42,7 +42,7 @@ namespace RestServiceFinal
 
             app.MapControllers();
 
-            app.Run("http://localhost:7213");
+            app.Run();
         }
     }
 }
